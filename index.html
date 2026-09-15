@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>NULL_VECTOR¹</title>
+<meta name="theme-color" content="#07090a">
+<meta name="description" content="NULL_VECTOR¹ — arena sim and claw placement trainer.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NULL_VECTOR¹">
+<meta name="mobile-web-app-capable" content="yes">
+<style>
+  :root{
+    --bg:#07090a; --line:#1c2b23; --phosphor:#3dff9e;
+    --amber:#ffb03d; --ink:#cfe8dc; --ink-dim:#5f7a6d;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent; user-select:none;}
+  html,body{
+    margin:0; height:100%; width:100%; overflow:hidden;
+    background:var(--bg); color:var(--ink);
+    font-family:'Courier New', ui-monospace, monospace;
+    display:flex; align-items:center; justify-content:center;
+  }
+  #scan{
+    position:fixed; inset:0; pointer-events:none;
+    background:repeating-linear-gradient(to bottom, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 3px);
+    mix-blend-mode:overlay;
+  }
+  #wrap{ text-align:center; padding:24px; max-width:340px; }
+  h1{
+    font-size:22px; letter-spacing:5px; color:var(--phosphor); margin:0 0 4px;
+    text-shadow:0 0 10px rgba(61,255,158,0.5);
+  }
+  .sub{ font-size:10px; letter-spacing:2px; color:var(--ink-dim); margin-bottom:34px; }
+  .modeBtn{
+    display:block; width:100%; margin-bottom:16px; padding:18px 14px;
+    background:rgba(13,18,16,0.4); border:1px solid var(--line); border-radius:2px;
+    color:var(--ink); text-decoration:none; text-align:left;
+    transition:border-color 0.15s, box-shadow 0.15s;
+  }
+  .modeBtn .t{ font-size:14px; letter-spacing:2px; color:var(--phosphor); }
+  .modeBtn .d{ font-size:10px; color:var(--ink-dim); margin-top:4px; letter-spacing:0.5px; }
+  .modeBtn:active{ border-color:var(--phosphor); box-shadow:0 0 16px rgba(61,255,158,0.2) inset; }
+  #modeBtn2 .t{ color:var(--amber); }
+  #modeBtn2:active{ border-color:var(--amber); box-shadow:0 0 16px rgba(255,176,61,0.2) inset; }
+  footer{ margin-top:20px; font-size:9px; color:var(--ink-dim); letter-spacing:1px; }
+</style>
+</head>
+<body>
+<div id="scan"></div>
+<div id="wrap">
+  <h1>NULL_VECTOR¹</h1>
+  <div class="sub">SELECT SIMULATION</div>
+
+  <a class="modeBtn" id="modeBtn1" href="arena.html">
+    <div class="t">▸ ARENA</div>
+    <div class="d">Wireframe combat sim — hostiles, first-person movement, full HUD.</div>
+  </a>
+
+  <a class="modeBtn" id="modeBtn2" href="drill.html">
+    <div class="t">▸ CLAW DRILL</div>
+    <div class="d">3-finger placement trainer — reaction time on real touch input.</div>
+  </a>
+
+  <footer>OPEN ON MOBILE · ADD TO HOME SCREEN FOR FULLSCREEN</footer>
+</div>
+<script>
+  if ('serviceWorker' in navigator){
+    window.addEventListener('load', ()=>{
+      navigator.serviceWorker.register('service-worker.js').catch(()=>{});
+    });
+  }
+</script>
+</body>
+</html>
