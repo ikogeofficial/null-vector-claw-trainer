@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>NULL_VECTOR¹ // ARENA</title>
+<meta name="theme-color" content="#07090a">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<style>
+  :root{
+    --bg:#07090a;
+    --line:#1c2b23;
+    --phosphor:#3dff9e;
+    --phosphor-dim:#1f6b46;
+    --amber:#ffb03d;
+    --hostile:#ff4d4d;
+    --ink:#cfe8dc;
+    --ink-dim:#5f7a6d;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none;}
+  html,body{
+    margin:0; padding:0; height:100%; width:100%; overflow:hidden;
+    background:var(--bg); color:var(--ink);
+    font-family:'Courier New', ui-monospace, monospace;
+    touch-action:none;
+  }
+  #glcanvas{ position:absolute; inset:0; display:block; }
+  #hud{ position:absolute; inset:0; z-index:10; pointer-events:none; }
+
+  /* crosshair */
+  #crosshair{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:24px; height:24px; z-index:12;
+  }
+  #crosshair::before, #crosshair::after{
+    content:''; position:absolute; background:var(--phosphor);
+  }
+  #crosshair::before{ left:50%; top:2px; bottom:2px; width:2px; margin-left:-1px; }
+  #crosshair::after{ top:50%; left:2px; right:2px; height:2px; margin-top:-1px; }
+  #crosshair.hit::before, #crosshair.hit::after{ background:var(--hostile); }
+
+  #hitmark{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(45deg);
+    width:26px; height:26px; z-index:13; opacity:0; pointer-events:none;
+  }
+  #hitmark::before, #hitmark::after{ content:''; position:absolute; background:var(--hostile); }
+  #hitmark::before{ left:50%; top:0; bottom:0; width:3px; margin-left:-1.5px; }
+  #hitmark::after{ top:50%; left:0; right:0; height:3px; margin-top:-1.5px; }
+  #hitmark.show{ opacity:1; animation:hitflash 0.25s ease-out; }
+  @keyframes hitflash{ from{ transform:translate(-50%,-50%) rotate(45deg) scale(1.6); opacity:1;} to{ transform:translate(-50%,-50%) rotate(45deg) scale(1); opacity:0;} }
+
+  /* top bar */
+  #topbar{
+    position:absolute; top:0; left:0; right:0; display:flex; justify-content:space-between;
+    padding:12px 14px; z-index:11;
+  }
+  #callsign{ font-size:12px; letter-spacing:2px; color:var(--phosphor); text-shadow:0 0 6px rgba(61,255,158,0.5); }
+  #callsign small{ display:block; font-size:9px; color:var(--ink-dim); letter-spacing:1px; margin-top:2px; }
+  #scorepanel{ text-align:right; font-size:11px; color:var(--ink-dim); line-height:1.5; }
+  #scorepanel b{ color:var(--phosphor); font-weight:normal; }
+
+  /* kill feed */
+  #feed{
+    position:absolute; top:56px; right:14px; z-index:11; text-align:right;
+    font-size:10px; color:var(--amber); letter-spacing:1px; line-height:1.6;
+    max-width:180px;
+  }
+  #feed div{ opacity:0; animation:feedin 3.5s ease-out forwards; }
+  @keyframes feedin{ 0%{opacity:0; transform:translateX(8px);} 8%{opacity:1; transform:translateX(0);} 80%{opacity:1;} 100%{opacity:0;} }
+
+  /* minimap */
+  #minimap{
+    position:absolute; top:12px; right:14px; z-index:11;
+    width:96px; height:96px; border:1px solid var(--line); border-radius:50%;
+    background:rgba(13,18,16,0.55); overflow:hidden;
+    display:none;
+  }
+  #minimapCanvas{ width:100%; height:100%; }
+
+  /* bottom-left health */
+  #healthWrap{
+    position:absolute; bottom:14px; left:14px; z-index:11; width:120px;
+  }
+  #healthLbl{ font-size:9px; letter-spacing:2px; color:var(--ink-dim); margin-bottom:3px; }
+  #healthBar{ height:6px; border:1px solid var(--line); background:rgba(13,18,16,0.6); }
+  #healthFill{ height:100%; width:100%; background:var(--phosphor); transition:width 0.2s, background 0.2s; }
+  #healthFill.low{ background:var(--hostile); }
+
+  /* controls */
+  .zone{
+    position:absolute; border-radius:50%; z-index:15; pointer-events:auto;
+    display:flex; align-items:center; justify-content:center; flex-direction:column;
+    border:1px solid var(--line); background:rgba(13,18,16,0.3); color:var(--ink-dim);
+  }
+  .zone .lbl{ font-size:9px; letter-spacing:1px; }
+  #joyBase{ width:110px; height:110px; left:18px; bottom:18px; }
+  #joyKnob{
+    position:absolute; width:46px; height:46px; border-radius:50%;
+    background:rgba(61,255,158,0.18); border:1px solid var(--phosphor);
+    left:50%; top:50%; margin:-23px 0 0 -23px; pointer-events:none;
+  }
+  #fireBtn{
+    width:78px; height:78px; right:20px; bottom:26px; z-index:16;
+    color:var(--hostile); border-color:var(--hostile);
+    background:rgba(255,77,77,0.08);
+  }
+  #fireBtn.empty{ color:var(--ink-dim); border-color:var(--line); background:rgba(13,18,16,0.3); }
+  #jumpBtn{ width:52px; height:52px; right:22px; bottom:118px; }
+  #slideBtn{ width:52px; height:52px; right:82px; bottom:150px; }
+  #ammoLbl{
+    position:absolute; right:26px; bottom:110px; z-index:11; font-size:10px; color:var(--ink-dim); letter-spacing:1px;
+  }
+  #ammoLbl b{ color:var(--amber); font-weight:normal; }
+
+  #lookLayer{ position:absolute; inset:0; z-index:8; pointer-events:auto; }
+
+  #vignette{
+    position:absolute; inset:0; z-index:9; pointer-events:none;
+    box-shadow:inset 0 0 0 0 rgba(255,0,0,0); transition:box-shadow 0.3s;
+  }
+  #vignette.hurt{ box-shadow:inset 0 0 90px 20px rgba(255,20,20,0.45); }
+
+  #startOverlay, #downOverlay{
+    position:absolute; inset:0; z-index:60; background:rgba(7,9,10,0.96);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:24px; gap:14px;
+  }
+  #downOverlay{ display:none; }
+  #startOverlay h1, #downOverlay h1{
+    color:var(--phosphor); font-size:16px; letter-spacing:3px; margin:0;
+    text-shadow:0 0 8px rgba(61,255,158,0.5);
+  }
+  #downOverlay h1{ color:var(--hostile); text-shadow:0 0 8px rgba(255,77,77,0.5); }
+  #startOverlay p, #downOverlay p{ color:var(--ink-dim); font-size:12px; max-width:280px; line-height:1.7; margin:0; }
+  .bigBtn{
+    margin-top:8px; padding:12px 28px; background:transparent;
+    border:1px solid var(--phosphor); color:var(--phosphor);
+    font-family:inherit; font-size:12px; letter-spacing:2px; border-radius:2px; pointer-events:auto;
+  }
+  #backBtn{
+    position:absolute; top:12px; left:50%; transform:translateX(-50%);
+    z-index:70; font-size:9px; letter-spacing:2px; color:var(--ink-dim);
+    text-decoration:none; border:1px solid var(--line); padding:5px 12px; border-radius:2px;
+    pointer-events:auto;
+  }
+</style>
+</head>
+<body>
+<canvas id="glcanvas"></canvas>
+
+<div id="hud">
+  <div id="lookLayer"></div>
+  <div id="vignette"></div>
+  <div id="crosshair"></div>
+  <div id="hitmark"></div>
+
+  <div id="topbar">
+    <div id="callsign">NULL_VECTOR¹<small>ARENA // LIVE SIM</small></div>
+    <div id="scorepanel">
+      KILLS <b id="kills">0</b> · DEATHS <b id="deaths">0</b><br>
+      SCORE <b id="score">0</b>
+    </div>
+  </div>
+  <div id="feed"></div>
+
+  <div id="minimap"><canvas id="minimapCanvas" width="96" height="96"></canvas></div>
+
+  <div id="healthWrap">
+    <div id="healthLbl">INTEGRITY</div>
+    <div id="healthBar"><div id="healthFill"></div></div>
+  </div>
+  <div id="ammoLbl">AMMO <b id="ammoCount">30</b>/30</div>
+
+  <div class="zone" id="joyBase"><div id="joyKnob"></div></div>
+  <div class="zone" id="fireBtn"><span class="lbl">FIRE</span></div>
+  <div class="zone" id="jumpBtn"><span class="lbl">JUMP</span></div>
+  <div class="zone" id="slideBtn"><span class="lbl">SLIDE</span></div>
+</div>
+
+<a id="backBtn" href="index.html">← MENU</a>
+
+<div id="startOverlay">
+  <h1>NULL_VECTOR¹ // ARENA SIM</h1>
+  <p>Left stick moves. Drag anywhere on the right to look. FIRE shoots whatever's under the crosshair. JUMP and SLIDE are up top-right.<br><br>
+  Hostiles are rendered wireframe-red. Drop them before they close distance — your integrity drains fast up close.</p>
+  <button class="bigBtn" id="startBtn">DEPLOY</button>
+</div>
+
+<div id="downOverlay">
+  <h1>SIGNAL LOST</h1>
+  <p id="downStats"></p>
+  <button class="bigBtn" id="respawnBtn">REDEPLOY</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  const canvas = document.getElementById('glcanvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:false });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x07090a, 1);
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.Fog(0x07090a, 14, 62);
+
+  const camera = new THREE.PerspectiveCamera(72, window.innerWidth/window.innerHeight, 0.1, 200);
+  camera.position.set(0, 1.7, 0);
+  let yaw = 0, pitch = 0;
+
+  window.addEventListener('resize', ()=>{
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  // ---------- WORLD ----------
+  const ARENA = 42;
+  const grid = new THREE.GridHelper(ARENA*2, 48, 0x2f7a56, 0x123322);
+  grid.position.y = 0;
+  scene.add(grid);
+
+  const floor = new THREE.Mesh(
+    new THREE.PlaneGeometry(ARENA*2, ARENA*2),
+    new THREE.MeshBasicMaterial({ color:0x050706 })
+  );
+  floor.rotation.x = -Math.PI/2;
+  floor.position.y = -0.02;
+  scene.add(floor);
+
+  function wireBox(w,h,d,color){
+    const group = new THREE.Group();
+    const geo = new THREE.BoxGeometry(w,h,d);
+    const face = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color:0x0d1210, transparent:true, opacity:0.35 }));
+    const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo), new THREE.LineBasicMaterial({ color }));
+    group.add(face); group.add(edges);
+    return group;
+  }
+
+  // buildings — brick by brick grid of wireframe blocks for cover
+  const buildingSpots = [];
+  const gridSpan = 3;
+  for (let gx=-gridSpan; gx<=gridSpan; gx++){
+    for (let gz=-gridSpan; gz<=gridSpan; gz++){
+      if (Math.abs(gx) + Math.abs(gz) < 2) continue; // keep center clear
+      if ((gx+gz) % 2 !== 0) continue; // sparse checkerboard placement
+      const h = 2 + Math.random()*4;
+      const w = 2.5 + Math.random()*1.5;
+      const b = wireBox(w, h, w, 0x2f7a56);
+      const x = gx * 9 + (Math.random()-0.5)*1.5;
+      const z = gz * 9 + (Math.random()-0.5)*1.5;
+      b.position.set(x, h/2, z);
+      scene.add(b);
+      buildingSpots.push({x, z, r: w*0.6});
+    }
+  }
+
+  // arena boundary wireframe wall (low, just to read edges)
+  const wall = wireBox(ARENA*2, 3, ARENA*2, 0x1f6b46);
+  wall.children[0].material.opacity = 0.03;
+  wall.position.y = 1.5;
+  scene.add(wall);
+
+  // ---------- BOTS ----------
+  const bots = [];
+  const MAX_BOTS = 5;
+
+  function makeBot(){
+    const group = new THREE.Group();
+    const bodyGeo = new THREE.CylinderGeometry(0.32, 0.38, 1.1, 8);
+    const headGeo = new THREE.SphereGeometry(0.26, 8, 8);
+    const bodyEdges = new THREE.LineSegments(new THREE.EdgesGeometry(bodyGeo), new THREE.LineBasicMaterial({ color:0xff4d4d }));
+    const headEdges = new THREE.LineSegments(new THREE.EdgesGeometry(headGeo), new THREE.LineBasicMaterial({ color:0xff4d4d }));
+    bodyEdges.position.y = 0.55;
+    headEdges.position.y = 1.28;
+    const hitBox = new THREE.Mesh(
+      new THREE.BoxGeometry(0.7, 1.8, 0.7),
+      new THREE.MeshBasicMaterial({ visible:false })
+    );
+    hitBox.position.y = 0.9;
+    group.add(bodyEdges, headEdges, hitBox);
+    group.userData.hitBox = hitBox;
+    return group;
+  }
+
+  function randomSpawn(){
+    let x, z, tries=0;
+    do {
+      const ang = Math.random()*Math.PI*2;
+      const rad = 14 + Math.random()*20;
+      x = Math.cos(ang)*rad; z = Math.sin(ang)*rad;
+      tries++;
+    } while (tries < 10 && Math.sqrt(x*x+z*z) < 10);
+    return { x, z };
+  }
+
+  function spawnBot(){
+    const g = makeBot();
+    const p = randomSpawn();
+    g.position.set(p.x, 0, p.z);
+    g.userData.health = 100;
+    g.userData.attackCooldown = 0;
+    g.userData.alive = true;
+    scene.add(g);
+    bots.push(g);
+  }
+  for (let i=0;i<MAX_BOTS;i++) spawnBot();
+
+  function killBot(bot){
+    bot.userData.alive = false;
+    scene.remove(bot);
+    const idx = bots.indexOf(bot);
+    if (idx>=0) bots.splice(idx,1);
+    setTimeout(spawnBot, 2200 + Math.random()*1500);
+  }
+
+  // ---------- STATE ----------
+  let health = 100, ammo = 30, kills = 0, deaths = 0, score = 0;
+  let alive = true;
+  let lastDamageTime = 0;
+
+  const healthFill = document.getElementById('healthFill');
+  const ammoCount = document.getElementById('ammoCount');
+  const killsEl = document.getElementById('kills');
+  const deathsEl = document.getElementById('deaths');
+  const scoreEl = document.getElementById('score');
+  const feed = document.getElementById('feed');
+  const vignette = document.getElementById('vignette');
+  const crosshair = document.getElementById('crosshair');
+  const hitmark = document.getElementById('hitmark');
+  const fireBtn = document.getElementById('fireBtn');
+  const startOverlay = document.getElementById('startOverlay');
+  const downOverlay = document.getElementById('downOverlay');
+  const downStats = document.getElementById('downStats');
+
+  function updateHealthUI(){
+    healthFill.style.width = Math.max(0,health) + '%';
+    healthFill.classList.toggle('low', health < 30);
+  }
+  function damagePlayer(amount){
+    if (!alive) return;
+    health -= amount;
+    lastDamageTime = performance.now();
+    vignette.classList.add('hurt');
+    setTimeout(()=>vignette.classList.remove('hurt'), 250);
+    if (health <= 0){
+      health = 0; alive = false; deaths++;
+      deathsEl.textContent = deaths;
+      downStats.textContent = 'KILLS ' + kills + ' · SCORE ' + score;
+      downOverlay.style.display = 'flex';
+    }
+    updateHealthUI();
+  }
+  function addFeed(text){
+    const d = document.createElement('div');
+    d.textContent = text;
+    feed.prepend(d);
+    setTimeout(()=>d.remove(), 3600);
+    while (feed.children.length > 4) feed.removeChild(feed.lastChild);
+  }
+
+  // ---------- CONTROLS: JOYSTICK (movement) ----------
+  const joyBase = document.getElementById('joyBase');
+  const joyKnob = document.getElementById('joyKnob');
+  let joyId = null, joyVec = {x:0, y:0};
+  const JOY_RADIUS = 46;
+
+  joyBase.addEventListener('touchstart', e=>{
+    e.preventDefault();
+    const t = e.changedTouches[0];
+    joyId = t.identifier;
+    updateJoy(t);
+  }, {passive:false});
+  window.addEventListener('touchmove', e=>{
+    for (const t of e.changedTouches){
+      if (t.identifier === joyId){ e.preventDefault(); updateJoy(t); }
+    }
+  }, {passive:false});
+  window.addEventListener('touchend', e=>{
+    for (const t of e.changedTouches){
+      if (t.identifier === joyId){
+        joyId = null; joyVec = {x:0,y:0};
+        joyKnob.style.transform = 'translate(0,0)';
+      }
+    }
+  }, {passive:false});
+
+  function updateJoy(t){
+    const r = joyBase.getBoundingClientRect();
+    const cx = r.left + r.width/2, cy = r.top + r.height/2;
+    let dx = t.clientX - cx, dy = t.clientY - cy;
+    const dist = Math.min(JOY_RADIUS, Math.sqrt(dx*dx+dy*dy));
+    const ang = Math.atan2(dy,dx);
+    dx = Math.cos(ang)*dist; dy = Math.sin(ang)*dist;
+    joyKnob.style.transform = `translate(${dx}px, ${dy}px)`;
+    joyVec.x = dx / JOY_RADIUS;
+    joyVec.y = dy / JOY_RADIUS;
+  }
+
+  // ---------- CONTROLS: LOOK (drag anywhere) ----------
+  const lookLayer = document.getElementById('lookLayer');
+  let lookId = null, lastLook = {x:0,y:0};
+  lookLayer.addEventListener('touchstart', e=>{
+    const t = e.changedTouches[0];
+    if (lookId === null){
+      lookId = t.identifier;
+      lastLook = {x:t.clientX, y:t.clientY};
+    }
+  }, {passive:false});
+  lookLayer.addEventListener('touchmove', e=>{
+    for (const t of e.changedTouches){
+      if (t.identifier === lookId){
+        const dx = t.clientX - lastLook.x, dy = t.clientY - lastLook.y;
+        yaw -= dx * 0.0032;
+        pitch -= dy * 0.0032;
+        pitch = Math.max(-1.2, Math.min(1.2, pitch));
+        lastLook = {x:t.clientX, y:t.clientY};
+      }
+    }
+  }, {passive:false});
+  lookLayer.addEventListener('touchend', e=>{
+    for (const t of e.changedTouches){
+      if (t.identifier === lookId) lookId = null;
+    }
+  }, {passive:false});
+
+  // ---------- CONTROLS: FIRE / JUMP / SLIDE ----------
+  let jumpVel = 0;
+  let sliding = 0;
+
+  function fire(){
+    if (!alive) return;
+    if (ammo <= 0){
+      fireBtn.classList.add('empty');
+      return;
+    }
+    ammo--; ammoCount.textContent = ammo;
+    if (ammo === 0){
+      fireBtn.classList.add('empty');
+      setTimeout(()=>{ ammo = 30; ammoCount.textContent = ammo; fireBtn.classList.remove('empty'); }, 1400);
+    }
+    const raycaster = new THREE.Raycaster();
+    raycaster.setFromCamera({x:0,y:0}, camera);
+    const targets = bots.map(b=>b.userData.hitBox);
+    const hits = raycaster.intersectObjects(targets, false);
+    if (hits.length){
+      const hitBox = hits[0].object;
+      const bot = bots.find(b=>b.userData.hitBox === hitBox);
+      if (bot && bot.userData.alive){
+        bot.userData.health -= 34;
+        crosshair.classList.add('hit');
+        hitmark.classList.remove('show'); void hitmark.offsetWidth; hitmark.classList.add('show');
+        setTimeout(()=>crosshair.classList.remove('hit'), 120);
+        if (bot.userData.health <= 0){
+          kills++; score += 100;
+          killsEl.textContent = kills; scoreEl.textContent = score;
+          addFeed('HOSTILE NEUTRALIZED +100');
+          killBot(bot);
+        }
+      }
+    }
+  }
+  document.getElementById('fireBtn').addEventListener('touchstart', e=>{ e.preventDefault(); fire(); }, {passive:false});
+
+  document.getElementById('jumpBtn').addEventListener('touchstart', e=>{
+    e.preventDefault();
+    if (jumpVel === 0) jumpVel = 4.6;
+  }, {passive:false});
+
+  document.getElementById('slideBtn').addEventListener('touchstart', e=>{
+    e.preventDefault();
+    if (sliding <= 0) sliding = 0.55;
+  }, {passive:false});
+
+  // ---------- GAME LOOP ----------
+  const clock = new THREE.Clock();
+  const minimapCanvas = document.getElementById('minimapCanvas');
+  const mctx = minimapCanvas.getContext('2d');
+  const minimapWrap = document.getElementById('minimap');
+
+  function drawMinimap(){
+    mctx.clearRect(0,0,96,96);
+    mctx.fillStyle = 'rgba(13,18,16,0.4)';
+    mctx.fillRect(0,0,96,96);
+    const scale = 96 / (ARENA*2.2);
+    buildingSpots.forEach(b=>{
+      mctx.fillStyle = 'rgba(47,122,86,0.5)';
+      mctx.fillRect(48 + b.x*scale - 2, 48 + b.z*scale - 2, 4, 4);
+    });
+    bots.forEach(b=>{
+      mctx.fillStyle = '#ff4d4d';
+      mctx.beginPath();
+      mctx.arc(48 + b.position.x*scale, 48 + b.position.z*scale, 2.4, 0, Math.PI*2);
+      mctx.fill();
+    });
+    mctx.save();
+    mctx.translate(48,48);
+    mctx.rotate(yaw);
+    mctx.fillStyle = '#3dff9e';
+    mctx.beginPath();
+    mctx.moveTo(0,-5); mctx.lineTo(4,4); mctx.lineTo(-4,4);
+    mctx.closePath(); mctx.fill();
+    mctx.restore();
+  }
+
+  function animate(){
+    requestAnimationFrame(animate);
+    const dt = Math.min(0.05, clock.getDelta());
+
+    camera.rotation.order = 'YXZ';
+    camera.rotation.y = yaw;
+    camera.rotation.x = pitch;
+
+    if (alive){
+      const speed = (sliding > 0 ? 7.5 : 3.6);
+      const forward = new THREE.Vector3(Math.sin(yaw), 0, Math.cos(yaw));
+      const right = new THREE.Vector3(Math.cos(yaw), 0, -Math.sin(yaw));
+      const move = new THREE.Vector3();
+      move.addScaledVector(forward, -joyVec.y * speed * dt);
+      move.addScaledVector(right, joyVec.x * speed * dt);
+      camera.position.add(move);
+
+      const dist = Math.sqrt(camera.position.x**2 + camera.position.z**2);
+      if (dist > ARENA-1){
+        const k = (ARENA-1)/dist;
+        camera.position.x *= k; camera.position.z *= k;
+      }
+
+      if (jumpVel > 0 || camera.position.y > 1.7){
+        jumpVel -= 9.8 * dt;
+        camera.position.y += jumpVel * dt;
+        if (camera.position.y <= 1.7){ camera.position.y = 1.7; jumpVel = 0; }
+      } else {
+        camera.position.y = 1.7;
+      }
+      if (sliding > 0) sliding -= dt;
+
+      // regen
+      if (performance.now() - lastDamageTime > 3000 && health < 100){
+        health = Math.min(100, health + dt*6);
+        updateHealthUI();
+      }
+
+      // bot AI
+      const now = performance.now();
+      bots.forEach(bot=>{
+        const dx = camera.position.x - bot.position.x;
+        const dz = camera.position.z - bot.position.z;
+        const d = Math.sqrt(dx*dx+dz*dz);
+        if (d > 2.2){
+          bot.position.x += (dx/d) * 1.15 * dt;
+          bot.position.z += (dz/d) * 1.15 * dt;
+          bot.rotation.y = Math.atan2(dx,dz);
+        } else if (now > bot.userData.attackCooldown){
+          bot.userData.attackCooldown = now + 900;
+          damagePlayer(7);
+        }
+      });
+    }
+
+    drawMinimap();
+    renderer.render(scene, camera);
+  }
+
+  document.getElementById('startBtn').addEventListener('click', ()=>{
+    startOverlay.style.display = 'none';
+    minimapWrap.style.display = 'block';
+    animate();
+  });
+
+  document.getElementById('respawnBtn').addEventListener('click', ()=>{
+    health = 100; alive = true; ammo = 30;
+    ammoCount.textContent = ammo;
+    updateHealthUI();
+    camera.position.set(0,1.7,0);
+    yaw = 0; pitch = 0;
+    downOverlay.style.display = 'none';
+  });
+
+  if ('serviceWorker' in navigator){
+    window.addEventListener('load', ()=>{
+      navigator.serviceWorker.register('service-worker.js').catch(()=>{});
+    });
+  }
+})();
+</script>
+</body>
+</html>
