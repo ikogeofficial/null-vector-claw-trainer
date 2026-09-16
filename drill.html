@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>NULL_VECTOR¹ // CLAW TRAINER</title>
+<meta name="theme-color" content="#07090a">
+<meta name="description" content="3-finger claw placement trainer for mobile shooters.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NULL_VECTOR¹">
+<meta name="mobile-web-app-capable" content="yes">
+<style>
+  :root{
+    --bg:#07090a;
+    --panel:#0d1210;
+    --line:#1c2b23;
+    --phosphor:#3dff9e;
+    --phosphor-dim:#1f6b46;
+    --amber:#ffb03d;
+    --red:#ff4d4d;
+    --ink:#cfe8dc;
+    --ink-dim:#5f7a6d;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent; user-select:none;}
+  html,body{
+    margin:0; padding:0; height:100%; width:100%;
+    background:var(--bg);
+    overflow:hidden;
+    font-family: 'Courier New', ui-monospace, monospace;
+    color:var(--ink);
+    touch-action:none;
+  }
+  #scan{
+    position:fixed; inset:0; pointer-events:none; z-index:5;
+    background:repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.015) 0px,
+      rgba(255,255,255,0.015) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    mix-blend-mode:overlay;
+  }
+  #stage{
+    position:relative; width:100%; height:100%;
+  }
+
+  /* header */
+  #header{
+    position:absolute; top:0; left:0; right:0;
+    display:flex; justify-content:space-between; align-items:flex-start;
+    padding:14px 16px; z-index:10;
+    pointer-events:none;
+  }
+  #callsign{
+    font-size:13px; letter-spacing:2px; color:var(--phosphor);
+    text-shadow:0 0 6px rgba(61,255,158,0.5);
+  }
+  #callsign small{display:block; color:var(--ink-dim); font-size:10px; letter-spacing:1px; margin-top:2px;}
+  #stats{
+    text-align:right; font-size:11px; color:var(--ink-dim); line-height:1.5;
+  }
+  #stats b{color:var(--ink); font-weight:normal;}
+  #fingerCount{color:var(--phosphor);}
+  #fingerCount.bad{color:var(--red);}
+
+  /* center readout */
+  #center{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    text-align:center; z-index:8; pointer-events:none;
+  }
+  #prompt{
+    font-size:15px; letter-spacing:3px; color:var(--ink-dim);
+    border:1px solid var(--line); padding:8px 18px; border-radius:2px;
+    background:rgba(13,18,16,0.6);
+  }
+  #prompt.live{ color:var(--amber); border-color:var(--amber); text-shadow:0 0 8px rgba(255,176,61,0.5);}
+  #prompt.hit{ color:var(--phosphor); border-color:var(--phosphor);}
+  #prompt.miss{ color:var(--red); border-color:var(--red);}
+  #timer{font-size:10px; color:var(--ink-dim); margin-top:6px; letter-spacing:1px;}
+
+  /* zones */
+  .zone{
+    position:absolute;
+    border:1px solid var(--line);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column;
+    color:var(--ink-dim);
+    background:rgba(13,18,16,0.35);
+    transition:border-color 0.15s, color 0.15s, box-shadow 0.15s, background 0.15s;
+  }
+  .zone .lbl{font-size:10px; letter-spacing:1px;}
+  .zone .sub{font-size:8px; color:var(--ink-dim); margin-top:2px;}
+  .zone.target{
+    border-color:var(--amber); color:var(--amber);
+    box-shadow:0 0 22px rgba(255,176,61,0.35) inset;
+  }
+  .zone.occupied{
+    border-color:var(--phosphor); color:var(--phosphor);
+    box-shadow:0 0 18px rgba(61,255,158,0.25) inset;
+  }
+  .zone.hit{
+    border-color:var(--phosphor); color:var(--phosphor);
+    box-shadow:0 0 30px rgba(61,255,158,0.6) inset;
+  }
+
+  #move{ width:34vw; height:34vw; max-width:170px; max-height:170px; left:5vw; bottom:6vh; }
+  #fire{ width:30vw; height:30vw; max-width:150px; max-height:150px; right:5vw; bottom:8vh; }
+  #jump{ width:15vw; height:15vw; max-width:76px; max-height:76px; right:6vw; top:22vh; }
+  #slide{ width:15vw; height:15vw; max-width:76px; max-height:76px; right:20vw; top:14vh; }
+
+  /* touch dots */
+  .dot{
+    position:absolute; width:46px; height:46px; margin:-23px 0 0 -23px;
+    border-radius:50%; z-index:20; pointer-events:none;
+    border:2px solid var(--phosphor);
+    background:rgba(61,255,158,0.12);
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px; color:var(--phosphor);
+  }
+
+  #footer{
+    position:absolute; bottom:0; left:0; right:0;
+    text-align:center; padding:10px; font-size:10px; color:var(--ink-dim);
+    letter-spacing:1px; z-index:10; pointer-events:none;
+  }
+  #backLink{
+    position:absolute; top:14px; left:50%; transform:translateX(-50%);
+    z-index:60; font-size:10px; letter-spacing:2px; color:var(--ink-dim);
+    text-decoration:none; border:1px solid var(--line); padding:5px 12px; border-radius:2px;
+    pointer-events:auto;
+  }
+  #startOverlay{
+    position:absolute; inset:0; z-index:50;
+    background:rgba(7,9,10,0.94);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:24px; gap:14px;
+  }
+  #startOverlay h1{
+    color:var(--phosphor); font-size:16px; letter-spacing:3px; margin:0;
+    text-shadow:0 0 8px rgba(61,255,158,0.5);
+  }
+  #startOverlay p{ color:var(--ink-dim); font-size:12px; max-width:280px; line-height:1.6; margin:0;}
+  #startBtn{
+    margin-top:10px; padding:12px 28px; background:transparent;
+    border:1px solid var(--phosphor); color:var(--phosphor);
+    font-family:inherit; font-size:12px; letter-spacing:2px; border-radius:2px;
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="scan"></div>
+
+  <div id="header">
+    <div id="callsign">NULL_VECTOR¹<small>CLAW TRAINER // 3-FINGER CAL</small></div>
+    <div id="stats">
+      FINGERS DOWN <b id="fingerCount">0</b><br>
+      SCORE <b id="score">0</b> · MISS <b id="miss">0</b><br>
+      AVG RXN <b id="avgRxn">--</b>ms
+    </div>
+  </div>
+
+  <div class="zone" id="move"><span class="lbl">MOVE</span><span class="sub">L THUMB</span></div>
+  <div class="zone" id="fire"><span class="lbl">FIRE/ADS</span><span class="sub">R THUMB</span></div>
+  <div class="zone" id="jump"><span class="lbl">JUMP</span></div>
+  <div class="zone" id="slide"><span class="lbl">SLIDE</span></div>
+
+  <div id="center">
+    <div id="prompt">HOLD MOVE + FIRE TO BEGIN</div>
+    <div id="timer"></div>
+  </div>
+
+  <div id="footer">OPEN ON YOUR PHONE · USE REAL FINGERS ON SCREEN · NO CAMERA NEEDED</div>
+
+  <div id="startOverlay">
+    <h1>NULL_VECTOR¹ // CLAW CALIBRATION</h1>
+    <p>Grip your phone like you're mid-match. Left thumb stays on MOVE, right thumb on FIRE, and your third finger (usually index) hovers JUMP/SLIDE.<br><br>
+    Keep MOVE + FIRE held down the whole time. When a zone lights up amber, tap it fast with your third finger.</p>
+    <button id="startBtn">START DRILL</button>
+    <a id="backLink" href="index.html" style="position:static; margin-top:4px;">← MENU</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const zones = {
+    move: document.getElementById('move'),
+    fire: document.getElementById('fire'),
+    jump: document.getElementById('jump'),
+    slide: document.getElementById('slide')
+  };
+  const promptEl = document.getElementById('prompt');
+  const timerEl = document.getElementById('timer');
+  const fingerCountEl = document.getElementById('fingerCount');
+  const scoreEl = document.getElementById('score');
+  const missEl = document.getElementById('miss');
+  const avgRxnEl = document.getElementById('avgRxn');
+  const startOverlay = document.getElementById('startOverlay');
+  const startBtn = document.getElementById('startBtn');
+
+  let activeTouches = new Map(); // id -> {x,y,zone,el}
+  let score = 0, misses = 0, rxnTimes = [];
+  let drillActive = false;
+  let currentTarget = null;
+  let targetStartTime = 0;
+  let targetTimeoutId = null;
+
+  function zoneAt(x, y){
+    for (const key in zones){
+      const r = zones[key].getBoundingClientRect();
+      const cx = r.left + r.width/2, cy = r.top + r.height/2;
+      const rad = r.width/2;
+      const dx = x - cx, dy = y - cy;
+      if (dx*dx + dy*dy <= rad*rad) return key;
+    }
+    return null;
+  }
+
+  function refreshZoneStates(){
+    const occupied = new Set();
+    activeTouches.forEach(t => { if (t.zone) occupied.add(t.zone); });
+    for (const key in zones){
+      zones[key].classList.remove('occupied');
+      if (occupied.has(key) && key !== currentTarget) zones[key].classList.add('occupied');
+    }
+    fingerCountEl.textContent = activeTouches.size;
+    fingerCountEl.classList.toggle('bad', activeTouches.size !== 0 && activeTouches.size !== 3);
+  }
+
+  function makeDot(id){
+    const d = document.createElement('div');
+    d.className = 'dot';
+    d.id = 'dot-' + id;
+    stage.appendChild(d);
+    return d;
+  }
+
+  function handleStart(e){
+    for (const t of e.changedTouches){
+      const zone = zoneAt(t.clientX, t.clientY);
+      const el = makeDot(t.identifier);
+      el.style.left = t.clientX + 'px';
+      el.style.top = t.clientY + 'px';
+      activeTouches.set(t.identifier, {x:t.clientX, y:t.clientY, zone, el});
+      if (zone === currentTarget) registerHit();
+    }
+    refreshZoneStates();
+    maybeAutoStart();
+  }
+  function handleMove(e){
+    for (const t of e.changedTouches){
+      const rec = activeTouches.get(t.identifier);
+      if (!rec) continue;
+      rec.x = t.clientX; rec.y = t.clientY;
+      rec.zone = zoneAt(t.clientX, t.clientY);
+      rec.el.style.left = t.clientX + 'px';
+      rec.el.style.top = t.clientY + 'px';
+      if (rec.zone === currentTarget) registerHit();
+    }
+    refreshZoneStates();
+  }
+  function handleEnd(e){
+    for (const t of e.changedTouches){
+      const rec = activeTouches.get(t.identifier);
+      if (rec) rec.el.remove();
+      activeTouches.delete(t.identifier);
+    }
+    refreshZoneStates();
+  }
+
+  function overlayVisible(){
+    return startOverlay.style.display !== 'none';
+  }
+
+  stage.addEventListener('touchstart', e=>{ if(!overlayVisible()) handleStart(e); }, {passive:false});
+  stage.addEventListener('touchmove', e=>{ if(!overlayVisible()) handleMove(e); }, {passive:false});
+  stage.addEventListener('touchend', e=>{ if(!overlayVisible()) handleEnd(e); }, {passive:false});
+  stage.addEventListener('touchcancel', e=>{ if(!overlayVisible()) handleEnd(e); }, {passive:false});
+  ['touchstart','touchmove','touchend'].forEach(ev=>{
+    stage.addEventListener(ev, e=>{ if(!overlayVisible()) e.preventDefault(); }, {passive:false});
+  });
+
+  function maybeAutoStart(){
+    if (drillActive) return;
+    const movHeld = [...activeTouches.values()].some(t=>t.zone==='move');
+    const fireHeld = [...activeTouches.values()].some(t=>t.zone==='fire');
+    if (movHeld && fireHeld && activeTouches.size >= 2){
+      startDrill();
+    }
+  }
+
+  function startDrill(){
+    drillActive = true;
+    promptEl.textContent = 'HOLD STEADY...';
+    promptEl.className = '';
+    setTimeout(nextTarget, 800);
+  }
+
+  function nextTarget(){
+    if (!drillActive) return;
+    const options = ['jump','slide'];
+    currentTarget = options[Math.floor(Math.random()*options.length)];
+    for (const k in zones) zones[k].classList.remove('target','hit');
+    zones[currentTarget].classList.add('target');
+    promptEl.textContent = 'TAP ' + currentTarget.toUpperCase();
+    promptEl.className = 'live';
+    targetStartTime = performance.now();
+    timerEl.textContent = '';
+    clearTimeout(targetTimeoutId);
+    targetTimeoutId = setTimeout(registerMiss, 1400);
+  }
+
+  function registerHit(){
+    if (!currentTarget) return;
+    const rxn = Math.round(performance.now() - targetStartTime);
+    clearTimeout(targetTimeoutId);
+    score++;
+    rxnTimes.push(rxn);
+    scoreEl.textContent = score;
+    avgRxnEl.textContent = Math.round(rxnTimes.reduce((a,b)=>a+b,0)/rxnTimes.length);
+    zones[currentTarget].classList.remove('target');
+    zones[currentTarget].classList.add('hit');
+    promptEl.textContent = 'HIT · ' + rxn + 'ms';
+    promptEl.className = 'hit';
+    currentTarget = null;
+    setTimeout(nextTarget, 500 + Math.random()*400);
+  }
+
+  function registerMiss(){
+    if (!currentTarget) return;
+    misses++;
+    missEl.textContent = misses;
+    zones[currentTarget].classList.remove('target');
+    promptEl.textContent = 'MISSED';
+    promptEl.className = 'miss';
+    currentTarget = null;
+    setTimeout(nextTarget, 600);
+  }
+
+  startBtn.addEventListener('click', ()=>{
+    startOverlay.style.display = 'none';
+  });
+
+  if ('serviceWorker' in navigator){
+    window.addEventListener('load', ()=>{
+      navigator.serviceWorker.register('service-worker.js').catch(()=>{});
+    });
+  }
+})();
+</script>
+</body>
+</html>
